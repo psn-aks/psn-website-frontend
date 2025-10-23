@@ -1,0 +1,43 @@
+// Sample data — this will later come from FastAPI
+export const pharmacists = [
+  {
+    id: 1,
+    name: "Dr. Sarah Johnson",
+    premise: "HealthPlus Pharmacy",
+    license: "PH12345",
+    location: "Lagos",
+    technicalGroup: "ACPN",
+    interestGroups: ["ALPS"],
+    fellow: "Fellow",
+  },
+  {
+    id: 2,
+    name: "Mr. James Adewale",
+    premise: "MediCare Chemists",
+    license: "PH98765",
+    location: "Abuja",
+    technicalGroup: "NAIP",
+    interestGroups: ["Elders Forum"],
+    fellow: "Fellow",
+  },
+  {
+    id: 3,
+    name: "Dr. Chidinma Okafor",
+    premise: "WellCare Pharmacy",
+    license: "PH45678",
+    location: "Port Harcourt",
+    technicalGroup: "AHAPN",
+    interestGroups: ["PSNYPG"],
+    fellow: "Fellow",
+  },
+  {
+    id: 4,
+    name: "Mrs. Aisha Bello",
+    premise: "Lifeline Drugstore",
+    license: "PH11223",
+    location: "Kano",
+    technicalGroup: "ACPN",
+    interestGroups: ["PSNYPG"],
+    fellow: "Fellow",
+  },
+];
