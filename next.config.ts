@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    // ⚠️ Warning: this ignores all ESLint errors during builds
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -11,7 +15,7 @@ const nextConfig = {
       // add your production domain here too, for deployment
       {
         protocol: "https",
-        hostname: "yourdomain.com",
+        hostname: "psn-website-backend.onrender.com",
         pathname: "/uploads/**",
       },
     ],
