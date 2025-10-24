@@ -54,7 +54,7 @@ export default function ChairmanSpeech() {
 
                     <div className="mt-6">
                         <h3 className="text-lg font-semibold text-green-700">
-                            Pharm. Ukeme Wilson
+                            John Doe
                         </h3>
                         <p className="text-gray-500 text-sm">Chairman, PSN, Akwa Ibom</p>
                     </div>

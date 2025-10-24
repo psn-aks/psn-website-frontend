@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import { Loader2 } from "lucide-react"; 
 
 import { endpoints } from "@/app/config/api";
 
@@ -21,9 +22,10 @@ export default function NewsEditorPage() {
     const [group, setGroup] = useState("");
     const [image, setImage] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false); // 👈 new loading state
     const router = useRouter();
 
-    // 🧠 Load draft from localStorage (auto-save)
+    // Load draft from localStorage (auto-save)
     useEffect(() => {
         const savedTitle = localStorage.getItem("news_draft_title");
         const savedAuthor = localStorage.getItem("news_draft_author");
@@ -48,7 +50,7 @@ export default function NewsEditorPage() {
         return () => clearTimeout(timeout);
     }, [title, author, tags, content, group]);
 
-    // 🖼 Handle image upload + preview
+    // Handle image upload + preview
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
@@ -59,35 +61,46 @@ export default function NewsEditorPage() {
         reader.readAsDataURL(file);
     };
 
+    // Submit handler with loading feedback
     const handleSubmit = async () => {
         if (!title.trim() || !author.trim() || !content.trim()) {
             alert("Please enter a title, author, content and group.");
             return;
         }
 
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("author", author);
-        formData.append("tags", tags);
-        formData.append("content", content);
-        formData.append("group", group);
-        if (image) formData.append("image", image);
+        setLoading(true); // start loading
 
-        const res = await fetch(endpoints.news, {
-            method: "POST",
-            body: formData,
-        });
+        try {
+            const formData = new FormData();
+            formData.append("title", title);
+            formData.append("author", author);
+            formData.append("tags", tags);
+            formData.append("content", content);
+            formData.append("group", group);
+            if (image) formData.append("image", image);
 
-        if (res.ok) {
-            // Clear drafts on successful submission
-            localStorage.removeItem("news_draft_title");
-            localStorage.removeItem("news_draft_author");
-            localStorage.removeItem("news_draft_tags");
-            localStorage.removeItem("news_draft_content");
-            localStorage.removeItem("news_draft_group");
-            router.push("/news");
-        } else {
-            alert("Error publishing news item.");
+            const res = await fetch(endpoints.news, {
+                method: "POST",
+                body: formData,
+            });
+
+            if (res.ok) {
+                // Clear drafts on successful submission
+                localStorage.removeItem("news_draft_title");
+                localStorage.removeItem("news_draft_author");
+                localStorage.removeItem("news_draft_tags");
+                localStorage.removeItem("news_draft_content");
+                localStorage.removeItem("news_draft_group");
+
+                router.push("/admin/news");
+            } else {
+                alert("Error publishing news item.");
+            }
+        } catch (error) {
+            console.error("Error submitting:", error);
+            alert("Something went wrong while publishing.");
+        } finally {
+            setLoading(false); 
         }
     };
 
@@ -97,7 +110,6 @@ export default function NewsEditorPage() {
                 <CardContent className="space-y-4">
                     <h1 className="text-2xl font-semibold">📰 Create News Article</h1>
 
-                    {/* Title */}
                     <Input
                         type="text"
                         placeholder="Enter title..."
@@ -105,7 +117,6 @@ export default function NewsEditorPage() {
                         onChange={(e) => setTitle(e.target.value)}
                     />
 
-                    {/* Author */}
                     <Input
                         type="text"
                         placeholder="Author name..."
@@ -113,7 +124,6 @@ export default function NewsEditorPage() {
                         onChange={(e) => setAuthor(e.target.value)}
                     />
 
-                    {/* Editor */}
                     <ReactQuill
                         value={content}
                         onChange={setContent}
@@ -122,7 +132,6 @@ export default function NewsEditorPage() {
                         className="bg-white rounded-lg"
                     />
 
-                    {/* Tags */}
                     <Input
                         type="text"
                         placeholder="Enter tags (comma-separated)..."
@@ -130,15 +139,13 @@ export default function NewsEditorPage() {
                         onChange={(e) => setTags(e.target.value)}
                     />
 
-                    {/* Group */}
                     <Input
                         type="text"
-                        placeholder="Enter Technical or Interest group (comma-separated)..."
+                        placeholder="Enter Technical or Interest group..."
                         value={group}
                         onChange={(e) => setGroup(e.target.value)}
                     />
 
-                    {/* Image upload */}
                     <div className="space-y-2">
                         <label className="block text-sm font-medium">Upload Image</label>
                         <Input type="file" accept="image/*" onChange={handleImageChange} />
@@ -151,9 +158,20 @@ export default function NewsEditorPage() {
                         )}
                     </div>
 
-                    {/* Submit button */}
-                    <Button onClick={handleSubmit} className="w-full">
-                        Publish Article
+                    {/* Submit button with spinner */}
+                    <Button
+                        onClick={handleSubmit}
+                        className="w-full flex items-center justify-center"
+                        disabled={loading}
+                    >
+                        {loading ? (
+                            <>
+                                <Loader2 className="animate-spin mr-2 h-4 w-4" />
+                                Publishing...
+                            </>
+                        ) : (
+                            "Publish Article"
+                        )}
                     </Button>
                 </CardContent>
             </Card>
