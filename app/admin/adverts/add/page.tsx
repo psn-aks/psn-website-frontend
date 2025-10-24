@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
+import { endpoints } from "@/app/config/api";
+
 export default function AddAdvertPage() {
     const router = useRouter();
     const [title, setTitle] = useState("");
@@ -42,7 +44,7 @@ export default function AddAdvertPage() {
         if (image) formData.append("image", image);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/adverts`, {
+            const res = await fetch(endpoints.adverts, {
                 method: "POST",
                 body: formData,
             });

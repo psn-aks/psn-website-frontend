@@ -22,7 +22,7 @@ export default function Contact() {
 
 
         try {
-            const res = await fetch("http://localhost:8000/api/v1/contact/send-mail", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/contact/send-mail`, {
                 method: "POST",
                 body: formData,
             });

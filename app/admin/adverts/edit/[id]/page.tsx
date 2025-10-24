@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
+import { API_BASE_URL, endpoints } from "@/app/config/api";
+
 export default function EditAdvertPage() {
     const router = useRouter();
     const { id } = useParams();
@@ -25,7 +27,7 @@ export default function EditAdvertPage() {
     useEffect(() => {
         async function fetchAdvert() {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/adverts/${id}`);
+                const res = await fetch(`${endpoints.adverts}/${id}`);
                 if (!res.ok) throw new Error("Failed to fetch advert");
                 const data = await res.json();
                 setTitle(data.title);
@@ -38,7 +40,7 @@ export default function EditAdvertPage() {
                     setImagePreview(
                         data.image_url.startsWith("http")
                             ? data.image_url
-                            : `${process.env.NEXT_PUBLIC_API_URL}/${data.image_url.replace(/\\/g, "/")}`
+                            : `${API_BASE_URL}/${data.image_url.replace(/\\/g, "/")}`
                     );
                 }
             } catch (error) {
@@ -73,7 +75,7 @@ export default function EditAdvertPage() {
         if (image) formData.append("image", image);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/adverts/${id}`, {
+            const res = await fetch(`${endpoints.adverts}/${id}`, {
                 method: "PUT",
                 body: formData,
             });

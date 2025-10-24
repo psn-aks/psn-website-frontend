@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Edit, Trash2, PlusCircle } from "lucide-react";
+import { API_BASE_URL, endpoints } from "@/app/config/api";
 
 interface Advert {
     uid: string;
@@ -19,6 +20,7 @@ interface Advert {
     link?: string;
 }
 
+
 export default function AdvertsListPage() {
     const [adverts, setAdverts] = useState<Advert[]>([]);
     const [loading, setLoading] = useState(true);
@@ -27,7 +29,7 @@ export default function AdvertsListPage() {
     useEffect(() => {
         async function fetchAdverts() {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/adverts`);
+                const res = await fetch(endpoints.adverts);
                 if (!res.ok) throw new Error("Failed to fetch adverts");
                 const data = await res.json();
                 setAdverts(data);
@@ -44,7 +46,7 @@ export default function AdvertsListPage() {
     const handleDelete = async (uid: string) => {
         if (!confirm("Are you sure you want to delete this advert?")) return;
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/adverts/${uid}`, {
+            const res = await fetch(`${endpoints.adverts}/${uid}`, {
                 method: "DELETE",
             });
             if (!res.ok) throw new Error("Failed to delete advert");
@@ -109,7 +111,7 @@ export default function AdvertsListPage() {
                                             src={
                                                 advert.image_url.startsWith("http")
                                                     ? advert.image_url
-                                                    : `${process.env.NEXT_PUBLIC_API_URL}/${advert.image_url.replace(/\\/g, "/")}`
+                                                    : `${API_BASE_URL}/${advert.image_url.replace(/\\/g, "/")}`
                                             }
                                             alt={advert.title}
                                             className="w-full h-40 object-cover"
