@@ -19,16 +19,16 @@ export default function NewsDetail() {
     const [data, setData] = useState<NewsResponse | null>(null);
     const [loading, setLoading] = useState(true);
 
-    const [shareUrl, setShareUrl] = useState("");
+    // const [shareUrl, setShareUrl] = useState("");
 
-    // const shareUrl = `https://your-domain.com/news/${slug}`
+    const shareUrl = `https://your-domain.com/news/${slug}`
 
-    useEffect(() => {
-        if (typeof window !== "undefined" && slug) {
-            const url = `${window.location.origin}/news/${slug}`;
-            setShareUrl(url);
-        }
-    }, [slug]);
+    // useEffect(() => {
+    //     if (typeof window !== "undefined" && slug) {
+    //         const url = `${window.location.origin}/news/${slug}`;
+    //         setShareUrl(url);
+    //     }
+    // }, [slug]);
 
 
 
