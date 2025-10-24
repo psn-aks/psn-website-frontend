@@ -157,11 +157,22 @@ export default function NewsEditorPage() {
                             />
                         )}
                     </div>
+                <div className="flex justify-end gap-4 pt-4">
+
+                    <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => router.back()}
+                        className="border-green-600 text-green-700 hover:bg-green-50"
+                        disabled={loading}
+                    >
+                        Cancel
+                    </Button>
 
                     {/* Submit button with spinner */}
                     <Button
                         onClick={handleSubmit}
-                        className="w-full flex items-center justify-center"
+                            className="flex items-center justify-center bg-green-600 hover:bg-blue-700 text-white"
                         disabled={loading}
                     >
                         {loading ? (
@@ -173,6 +184,7 @@ export default function NewsEditorPage() {
                             "Publish Article"
                         )}
                     </Button>
+                </div>
                 </CardContent>
             </Card>
         </div>
