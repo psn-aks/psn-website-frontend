@@ -6,17 +6,10 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "127.0.0.1",
-        port: "8000",
-        pathname: "/uploads/**",
-      },
       // add your production domain here too, for deployment
       {
         protocol: "https",
-        hostname: "psn-website-backend.onrender.com",
-        pathname: "/uploads/**",
+        hostname: "res.cloudinary.com",
       },
     ],
   },

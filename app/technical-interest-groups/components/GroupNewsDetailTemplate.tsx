@@ -7,7 +7,9 @@ import { FaXTwitter, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 import { formatDate } from "@/utils/format_date";
 import ArticleSkeleton from "@/components/article/ArticleSkeleton";
 
-import { API_BASE_URL, endpoints } from "@/app/config/api";
+import { endpoints } from "@/app/config/api";
+import { WEB_DOMAIN_URL } from "@/app/config/base";
+
 
 export function GroupNewsDetail({
     slug,
@@ -21,7 +23,7 @@ export function GroupNewsDetail({
     const [loading, setLoading] = useState(true);
 
 
-    const shareUrl = `https://your-domain.com${basePath}/news/${slug}`
+    const shareUrl = `${WEB_DOMAIN_URL}/news/${slug}`
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -89,7 +91,7 @@ export function GroupNewsDetail({
                 {article.image_url && (
                     <div className="mb-8">
                         <img
-                            src={`${API_BASE_URL}/${article.image_url}`}
+                            src={article.image_url}
                             alt={article.title}
                             className="w-full h-100 object-contain rounded-2xl shadow-md"
                         />

@@ -18,7 +18,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Welcome to PSN AKS",
-  description: "This is the official website of the Pharmaceutical Society of Nigeria (PSN), Akwa Ibom State Branch",
+  description: "Official website of the Pharmaceutical Society of Nigeria (PSN), Akwa Ibom State Branch",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

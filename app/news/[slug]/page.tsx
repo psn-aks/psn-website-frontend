@@ -8,7 +8,8 @@ import { FaXTwitter, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 import { formatDate } from "@/utils/format_date";
 import ArticleSkeleton from "@/components/article/ArticleSkeleton";
 
-import { API_BASE_URL, endpoints } from "@/app/config/api";
+import { endpoints } from "@/app/config/api";
+import { WEB_DOMAIN_URL } from "@/app/config/base";
 
 
 export default function NewsDetail() {
@@ -19,18 +20,9 @@ export default function NewsDetail() {
     const [data, setData] = useState<NewsResponse | null>(null);
     const [loading, setLoading] = useState(true);
 
-    const [shareUrl, setShareUrl] = useState("");
 
-    // const shareUrl = `https://your-domain.com/news/${slug}`
+    const shareUrl = `${WEB_DOMAIN_URL}/news/${slug}`
 
-    useEffect(() => {
-        if (typeof window !== "undefined" && slug) {
-            const url = `${window.location.origin}/news/${slug}`;
-            setShareUrl(url);
-        }
-    }, [slug]);
-
-    if (!shareUrl) return null;
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -102,7 +94,7 @@ export default function NewsDetail() {
                 {article.image_url && (
                     <div className="mb-8">
                         <img
-                            src={`${API_BASE_URL}/${article.image_url}`}
+                            src={article.image_url}
                             alt={article.title}
                             className="w-full h-100 object-contain rounded-2xl shadow-md"
                         />
