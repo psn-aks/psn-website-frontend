@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 
+import { endpoints } from "@/app/config/api";
+
 export default function NewsListPage() {
     const router = useRouter()
     const [articles, setArticles] = useState<any[]>([])
@@ -13,7 +15,7 @@ export default function NewsListPage() {
     useEffect(() => {
         async function fetchArticles() {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/news`)
+                const res = await fetch(endpoints.news)
                 const data = await res.json()
 
                 setArticles(Array.isArray(data) ? data : [])
@@ -80,7 +82,7 @@ export default function NewsListPage() {
     async function handleDelete(uid: string) {
         if (!confirm("Delete this article?")) return
         try {
-            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/${uid}`, {
+            await fetch(`${endpoints.news}/${uid}`, {
                 method: "DELETE",
             })
             setArticles((prev) => prev.filter((a) => a.uid !== uid))

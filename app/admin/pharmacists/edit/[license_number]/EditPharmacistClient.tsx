@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Pharmacist } from "@/types/pharmacist";
 
+import { endpoints } from "@/app/config/api";
 
 export default function EditPharmacistClient({ pharmacist }: { pharmacist: Pharmacist }) {
     const router = useRouter();
@@ -47,7 +48,7 @@ export default function EditPharmacistClient({ pharmacist }: { pharmacist: Pharm
 
         try {
             const res = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/v1/pharmacists/${pharmacist.pcn_license_number}`,
+                `${endpoints.pharmacists}/${pharmacist.pcn_license_number}`,
                 {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },

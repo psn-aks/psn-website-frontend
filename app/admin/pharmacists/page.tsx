@@ -1,8 +1,10 @@
-// app/admin/pharmacists/page.tsx
 import AdminPharmacistsClient from "./AdminPharmacistsClient"
 
+import { endpoints } from "@/app/config/api";
+
+
 async function getPharmacists() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/pharmacists`, {
+    const res = await fetch(endpoints.pharmacists, {
         headers: { accept: "application/json" },
         cache: "no-store",
     })

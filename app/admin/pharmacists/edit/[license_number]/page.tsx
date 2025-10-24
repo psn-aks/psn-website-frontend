@@ -1,8 +1,10 @@
 import EditPharmacistClient from "./EditPharmacistClient";
+import { endpoints } from "@/app/config/api";
+
 
 async function getPharmacist(license_number: string) {
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/pharmacists/${license_number}`,
+        `${endpoints.pharmacists}/${license_number}`,
         {
             headers: { accept: "application/json" },
             cache: "no-store",

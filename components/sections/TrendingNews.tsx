@@ -8,6 +8,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
+import { API_BASE_URL, endpoints } from "@/app/config/api";
+
 interface NewsItem {
     slug: string;
     title: string;
@@ -24,7 +26,7 @@ function NewsImage({ src, alt }: { src?: string; alt: string }) {
         src && !error
             ? src.startsWith("http")
                 ? src
-                : `${process.env.NEXT_PUBLIC_API_URL}/${src.replace(/\\/g, "/")}`
+                : `${API_BASE_URL}/${src.replace(/\\/g, "/")}`
             : "/images/logo.png"; 
 
     return (
@@ -49,7 +51,7 @@ export default function TrendingNews() {
     // Fetch latest 3 news
     useEffect(() => {
         const fetchNews = async () => {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/news`);
+            const res = await fetch(endpoints.news);
             const data = await res.json();
             const sorted = data.sort(
                 (a: NewsItem, b: NewsItem) =>

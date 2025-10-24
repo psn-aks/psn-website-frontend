@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { endpoints } from "@/app/config/api";
+
 export default function Contact() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState<string | null>(null);
@@ -22,7 +24,7 @@ export default function Contact() {
 
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/contact/send-mail`, {
+            const res = await fetch(`${endpoints.contact}/send-mail`, {
                 method: "POST",
                 body: formData,
             });

@@ -8,7 +8,7 @@ import { FaXTwitter, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 import { formatDate } from "@/utils/format_date";
 import ArticleSkeleton from "@/components/article/ArticleSkeleton";
 
-
+import { API_BASE_URL, endpoints } from "@/app/config/api";
 
 
 export default function NewsDetail() {
@@ -19,13 +19,23 @@ export default function NewsDetail() {
     const [data, setData] = useState<NewsResponse | null>(null);
     const [loading, setLoading] = useState(true);
 
-    const shareUrl = `https://your-domain.com/news/${slug}`
+    const [shareUrl, setShareUrl] = useState("");
+
+    // const shareUrl = `https://your-domain.com/news/${slug}`
+
+    useEffect(() => {
+        if (typeof window !== "undefined" && slug) {
+            const url = `${window.location.origin}/news/${slug}`;
+            setShareUrl(url);
+        }
+    }, [slug]);
+
 
 
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/slug/${slug}`);
+                const res = await fetch(`${endpoints.news}/slug/${slug}`);
                 if (!res.ok) throw new Error("Failed to load news item");
                 const data = await res.json();
                 setData(data);
@@ -92,7 +102,7 @@ export default function NewsDetail() {
                 {article.image_url && (
                     <div className="mb-8">
                         <img
-                            src={`${process.env.NEXT_PUBLIC_API_URL}/${article.image_url}`}
+                            src={`${API_BASE_URL}/${article.image_url}`}
                             alt={article.title}
                             className="w-full h-100 object-contain rounded-2xl shadow-md"
                         />

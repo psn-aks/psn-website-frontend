@@ -7,6 +7,7 @@ import { FaXTwitter, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 import { formatDate } from "@/utils/format_date";
 import ArticleSkeleton from "@/components/article/ArticleSkeleton";
 
+import { API_BASE_URL, endpoints } from "@/app/config/api";
 
 export function GroupNewsDetail({
     slug,
@@ -25,7 +26,7 @@ export function GroupNewsDetail({
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/slug/${slug}`);
+                const res = await fetch(`${endpoints.news}/slug/${slug}`);
                 if (!res.ok) throw new Error("Failed to load news item");
                 const data = await res.json();
                 setData(data);
@@ -88,7 +89,7 @@ export function GroupNewsDetail({
                 {article.image_url && (
                     <div className="mb-8">
                         <img
-                            src={`${process.env.NEXT_PUBLIC_API_URL}/${article.image_url}`}
+                            src={`${API_BASE_URL}/${article.image_url}`}
                             alt={article.title}
                             className="w-full h-100 object-contain rounded-2xl shadow-md"
                         />

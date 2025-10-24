@@ -6,6 +6,9 @@ import { Search, Pencil, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
+import { endpoints } from "@/app/config/api";
+
+
 export default function AdminPharmacistsClient({ pharmacists }: { pharmacists: any[] }) {
     const router = useRouter();
     const [query, setQuery] = useState("");
@@ -31,7 +34,7 @@ export default function AdminPharmacistsClient({ pharmacists }: { pharmacists: a
 
         try {
             const res = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/v1/pharmacists/${license}`,
+                `${endpoints.pharmacists}/${license}`,
                 { method: "DELETE" }
             );
             if (!res.ok) throw new Error("Failed to delete pharmacist");

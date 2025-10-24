@@ -5,4 +5,5 @@ export const endpoints = {
   news: `${API_BASE_URL}/api/v1/news`,
   adverts: `${API_BASE_URL}/api/v1/adverts`,
   pharmacists: `${API_BASE_URL}/api/v1/pharmacists`,
+  contact: `${API_BASE_URL}/api/v1/contact`,
 };

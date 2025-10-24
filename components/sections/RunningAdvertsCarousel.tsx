@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
+import { API_BASE_URL, endpoints } from "@/app/config/api";
 interface Ad {
     id: number
     title: string
@@ -23,7 +24,7 @@ export default function RunningAdvertsCarousel() {
     useEffect(() => {
         async function loadAds() {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/adverts?only_active=true`)
+                const res = await fetch(`${endpoints.adverts}?only_active=true`)
                 const data: Ad[] = await res.json()
 
                 const now = new Date()
@@ -105,7 +106,7 @@ export default function RunningAdvertsCarousel() {
                                         ad.image_url
                                             ? ad.image_url.startsWith("http")
                                                 ? ad.image_url
-                                                : `${process.env.NEXT_PUBLIC_API_URL}/${ad.image_url.replace(/\\/g, "/")}`
+                                                : `${API_BASE_URL}/${ad.image_url.replace(/\\/g, "/")}`
                                             : "/fallback-news.jpg"
                                     }
                                     alt={ad.title}

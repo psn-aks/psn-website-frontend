@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 
+import { endpoints } from "@/app/config/api";
+
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 import "react-quill-new/dist/quill.snow.css";
 
@@ -61,7 +63,7 @@ export default function EditNewsClient({ news }: EditNewsClientProps) {
         formData.append("group", group);
         if (image) formData.append("image", image);
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/slug/${news.slug}`, {
+        const res = await fetch(`${endpoints.news}/slug/${news.slug}`, {
             method: "PUT",
             body: formData,
         });

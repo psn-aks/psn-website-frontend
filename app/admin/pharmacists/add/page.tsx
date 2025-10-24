@@ -6,6 +6,8 @@ import { motion } from "framer-motion"
 import { ArrowLeft, Save, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+import { endpoints } from "@/app/config/api";
+
 export default function AddPharmacistPage() {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
@@ -39,7 +41,7 @@ export default function AddPharmacistPage() {
         setLoading(true)
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/pharmacists`, {
+            const response = await fetch(endpoints.pharmacists, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

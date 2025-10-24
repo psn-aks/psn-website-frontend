@@ -7,6 +7,9 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { formatDate } from "@/utils/format_date"
 
+import { endpoints } from "@/app/config/api";
+
+
 export default function PSNNews() {
 
     const router = useRouter()
@@ -18,7 +21,7 @@ export default function PSNNews() {
     useEffect(() => {
         async function fetchArticles() {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/news`)
+                const res = await fetch(endpoints.news)
                 const data = await res.json()
 
                 setArticles(Array.isArray(data) ? data : [])
