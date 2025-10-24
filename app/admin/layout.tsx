@@ -14,6 +14,7 @@ import {
     Pill
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -36,7 +37,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     ];
 
     // animation variants for sidebar
-    const sidebarVariants = {
+    const sidebarVariants: Variants = {
         open: { x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } },
         closed: {
             x: "-100%",
