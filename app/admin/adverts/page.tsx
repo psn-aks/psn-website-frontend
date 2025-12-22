@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Edit, Trash2, PlusCircle } from "lucide-react";
-import { API_BASE_URL, endpoints } from "@/app/config/api";
+import { API_BASE_URL } from "@/lib/clientApi";
+import {  endpoints } from "@/lib/serverApi";
 
 interface Advert {
     uid: string;
@@ -152,7 +153,7 @@ export default function AdvertsListPage() {
                                                 variant="destructive"
                                                 size="sm"
                                                 onClick={() => handleDelete(advert.uid)}
-                                                className="flex items-center gap-1"
+                                                className="flex items-center gap-1 bg-red-500"
                                             >
                                                 <Trash2 className="w-4 h-4" /> Delete
                                             </Button>

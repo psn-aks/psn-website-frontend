@@ -5,7 +5,10 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
-import { API_BASE_URL, endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
+
+import { API_BASE_URL } from "@/lib/clientApi";
+
 interface Ad {
     id: number
     title: string

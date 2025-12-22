@@ -10,18 +10,3 @@ export default async function PSNYPGNewsDetailPage({ params }: { params: Promise
         />
     )
 }
-
-// export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-//     const { slug } = await params
-
-//     return generateGroupNewsMetadata({
-//         group: "PSNYPG",
-//         slug,
-//         newsItems,
-//     })
-
-// }
-
-
-// const res = await fetch(`${process.env.API_URL}/news/${slug}`, { cache: "no-store" })
-// const article = await res.json()

@@ -38,13 +38,16 @@ export function GroupNewsList({
     newsItems: NewsArticle[]
     basePath: string
 }) {
+    const groupUrl = `/technical-interest-groups/${group.toLowerCase()}`
     return (
+
+
         <main className="min-h-screen bg-gray-50 py-20 px-4">
             <div className="max-w-4xl mx-auto bg-white shadow-md rounded-2xl p-8">
 
                 <BackToGroup />
 
-                <GroupSubNav base="/technical-interest-groups/alps" />
+                <GroupSubNav base={groupUrl} />
 
                 <h1 className="text-3xl font-bold text-blue-800 mb-10 text-center">
                     {group} News & Activities

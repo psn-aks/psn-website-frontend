@@ -7,7 +7,7 @@ import { FaXTwitter, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 import { formatDate } from "@/utils/format_date";
 import ArticleSkeleton from "@/components/article/ArticleSkeleton";
 
-import { endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
 import { WEB_DOMAIN_URL } from "@/app/config/base";
 
 

@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-import { endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
 
 export default function AddAdvertPage() {
     const router = useRouter();

@@ -1,4 +1,4 @@
-import { endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
 
 async function getNewsByGroup(group: string): Promise<NewsArticle[]> {
   const res = await fetch(

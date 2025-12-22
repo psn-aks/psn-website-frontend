@@ -8,7 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-import { API_BASE_URL, endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
+import { API_BASE_URL} from "@/lib/clientApi";
 
 export default function EditAdvertPage() {
     const router = useRouter();

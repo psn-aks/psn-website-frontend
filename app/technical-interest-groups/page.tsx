@@ -5,24 +5,9 @@ import { useRouter } from "next/navigation"
 
 const groups = [
     {
-        name: "ALPS",
-        description: "Association of Lady Pharmacists",
-        href: "/technical-interest-groups/alps",
-    },
-    {
         name: "ACPN",
         description: "Association of Community Pharmacists of Nigeria",
         href: "/technical-interest-groups/acpn",
-    },
-    {
-        name: "Elders Forum",
-        description: "Pharmacy Elders Advisory Forum",
-        href: "/technical-interest-groups/elders-forum",
-    },
-    {
-        name: "PSNYPG",
-        description: "Pharmaceutical Society of Nigeria Young Pharmacists Group",
-        href: "/technical-interest-groups/psnypg",
     },
     {
         name: "AHAPN",
@@ -30,9 +15,29 @@ const groups = [
         href: "/technical-interest-groups/ahapn",
     },
     {
+        name: "ALPS",
+        description: "Association of Lady Pharmacists",
+        href: "/technical-interest-groups/alps",
+    },
+    {
+        name: "Elders Forum",
+        description: "Pharmacy Elders Advisory Forum",
+        href: "/technical-interest-groups/elders-forum",
+    },
+    {
         name: "NAIP",
         description: "Nigerian Association of Industrial Pharmacists",
         href: "/technical-interest-groups/naip",
+    },
+    {
+        name: "NAPA",
+        description: "Nigerian Association of Pharmacists in Academia",
+        href: "/technical-interest-groups/napa",
+    },
+    {
+        name: "PSNYPG",
+        description: "Pharmaceutical Society of Nigeria Young Pharmacists Group",
+        href: "/technical-interest-groups/psnypg",
     },
 ]
 
@@ -50,8 +55,8 @@ export default function TechnicalGroupsPage() {
                     Technical / Interest Groups
                 </motion.h1>
                 <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-                    Explore the various professional and technical groups within the
-                    pharmaceutical community.
+                    Explore the various technical and Interest groups within the
+                    PSN Akwa Ibom State Branch.
                 </p>
 
                 {/* Cards Grid */}

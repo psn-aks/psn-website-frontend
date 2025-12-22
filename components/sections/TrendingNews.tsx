@@ -8,7 +8,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
-import { API_BASE_URL, endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
+import { API_BASE_URL } from "@/lib/clientApi";
 
 interface NewsItem {
     slug: string;
@@ -53,7 +54,8 @@ export default function TrendingNews() {
         const fetchNews = async () => {
             const res = await fetch(endpoints.news);
             const data = await res.json();
-            const sorted = data.sort(
+    
+            const sorted = data.items.sort(
                 (a: NewsItem, b: NewsItem) =>
                     new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
             );
@@ -121,7 +123,7 @@ export default function TrendingNews() {
                                             </div>
 
                                             <Link href={`/news/${item.slug}`}>
-                                                <Button className="mt-4 w-full">Read More</Button>
+                                                <Button className="mt-4 w-full underline">Read More ...</Button>
                                             </Link>
                                         </div>
                                     </CardContent>

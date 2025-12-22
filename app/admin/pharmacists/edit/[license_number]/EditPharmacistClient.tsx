@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Pharmacist } from "@/types/pharmacist";
 
-import { endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
 
 export default function EditPharmacistClient({ pharmacist }: { pharmacist: Pharmacist }) {
     const router = useRouter();
@@ -28,6 +28,7 @@ export default function EditPharmacistClient({ pharmacist }: { pharmacist: Pharm
         place_of_work: pharmacist.place_of_work || "",
         technical_group: pharmacist.technical_group || "",
         gender: pharmacist.gender || "",
+        phone_number: pharmacist.phone_number || "",
         interest_groups: pharmacist.interest_groups?.join(", ") || "",
         created_at: pharmacist.created_at
             ? new Date(pharmacist.created_at).toLocaleString()
@@ -117,6 +118,7 @@ export default function EditPharmacistClient({ pharmacist }: { pharmacist: Pharm
                     <Field label="Residential Address" name="residential_address" value={formData.residential_address} onChange={handleChange} />
                     <Field label="Place of Work" name="place_of_work" value={formData.place_of_work} onChange={handleChange} />
                     <Field label="Technical Group" name="technical_group" value={formData.technical_group} onChange={handleChange} />
+                    <Field label="Phone Number" name="phone_number" value={formData.phone_number} onChange={handleChange} />
                     <div>
                         <label className="block text-sm font-semibold text-green-700 mb-1">
                             Gender

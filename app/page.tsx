@@ -3,7 +3,6 @@
 
 import Hero from "@/components/sections/Hero"
 import Features from "@/components/sections/Features"
-import CTA from "@/components/sections/CTA"
 import Contact from "@/components/sections/Contact"
 import ChairmanSpeech from "@/components/sections/ChairmanSpeech";
 import TrendingNews from "@/components/sections/TrendingNews";
@@ -19,7 +18,6 @@ export default function HomePage() {
       <Features />
       <TrendingNews />
       <RunningAdvertsCarousel />
-      {/* <CTA /> */}
       <Contact />
       
     </main>

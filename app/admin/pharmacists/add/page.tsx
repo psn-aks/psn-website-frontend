@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { ArrowLeft, Save, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-import { endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
 
 export default function AddPharmacistPage() {
     const router = useRouter()
@@ -26,6 +26,7 @@ export default function AddPharmacistPage() {
         technical_group: "",
         interest_groups: "",
         gender: "",
+        phone_number: ""
     })
 
     const handleChange = (
@@ -103,6 +104,7 @@ export default function AddPharmacistPage() {
                         <Input label="Interest Groups (comma-separated)" name="interest_groups" placeholder="PSNYPG, ALPS, Elders Forum" value={formData.interest_groups} onChange={handleChange} />
                         <Select label="Fellow" name="fellow" value={formData.fellow} onChange={handleChange} options={["Yes", "No"]} />
                         <Select label="Gender" name="gender" value={formData.gender} onChange={handleChange} options={["", "Male", "Female"]} />
+                        <Input label="Phone Number" name="phone_number" value={formData.phone_number} onChange={handleChange} />
                     </div>
 
                     <div className="flex flex-col md:flex-row justify-between mt-8 gap-4">
@@ -110,7 +112,7 @@ export default function AddPharmacistPage() {
                             type="button"
                             variant="outline"
                             className="flex items-center gap-2 border-gray-400 hover:bg-gray-100"
-                            onClick={() => router.push("/pharmacists")}
+                            onClick={() => router.push("/admin/pharmacists")}
                             disabled={loading}
                         >
                             <ArrowLeft size={18} />

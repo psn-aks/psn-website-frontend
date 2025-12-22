@@ -7,11 +7,11 @@ import {
     LayoutDashboard,
     Newspaper,
     UserCog,
-    LogOut,
     Menu,
     ChevronLeft,
     ChevronRight,
-    Pill
+    Pill,
+    Gamepad2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -34,6 +34,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { href: "/admin/news", label: "News", icon: Newspaper },
         { href: "/admin/pharmacists", label: "Pharmacists", icon: UserCog },
         { href: "/admin/adverts", label: "Adverts", icon: Pill },
+        { href: "/admin/quiz", label: "Quiz", icon: Gamepad2 },
     ];
 
     // animation variants for sidebar
@@ -94,16 +95,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         })}
                     </nav>
 
-                    {/* Footer */}
-                    <div className="p-4 border-t">
-                        <button
-                            onClick={() => router.push("/")}
-                            className="flex items-center gap-2 text-red-600 hover:text-red-700 w-full"
-                        >
-                            <LogOut className="w-5 h-5" />
-                            <span>Logout</span>
-                        </button>
-                    </div>
+                    
                 </motion.aside>
             </AnimatePresence>
 

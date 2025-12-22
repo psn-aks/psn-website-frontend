@@ -1,6 +1,5 @@
 import EditPharmacistClient from "./EditPharmacistClient";
-import { endpoints } from "@/app/config/api";
-
+import { endpoints } from "@/lib/serverApi";
 
 async function getPharmacist(license_number: string) {
     const res = await fetch(

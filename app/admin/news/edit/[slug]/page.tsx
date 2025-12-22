@@ -1,5 +1,5 @@
 import EditNewsClient from "./EditNewsClient";
-import { endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
 
 async function getNewsItemBySlug(slug: string) {
     const res = await fetch(`${endpoints.news}/slug/${encodeURIComponent(slug)}`, {

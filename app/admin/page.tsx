@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Newspaper, UserCog, Pill } from "lucide-react";
+import { Newspaper, UserCog, Pill, Gamepad2 } from "lucide-react";
 
 export default function AdminDashboard() {
     const cards = [
@@ -26,6 +26,13 @@ export default function AdminDashboard() {
             href: "/admin/adverts",
             icon: <Pill className="w-10 h-10 text-blue-600" />,
             color: "bg-blue-50 hover:bg-blue-100",
+        },
+        {
+            title: "Manage Quiz",
+            description: "Add, edit, or remove Quiz.",
+            href: "/admin/quiz",
+            icon: <Gamepad2 className="w-10 h-10 text-green-600" />,
+            color: "bg-green-50 hover:bg-green-100",
         },
     ];
 

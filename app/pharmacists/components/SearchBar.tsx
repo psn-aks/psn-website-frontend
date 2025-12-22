@@ -47,7 +47,7 @@ export default function SearchBar({ pharmacists }: { pharmacists: any[] }) {
                         <thead className="bg-green-600 text-white">
                             <tr>
                                 <th className="py-3 px-4 whitespace-nowrap">Name</th>
-                                <th className="py-3 px-4 whitespace-nowrap">Premise</th>
+                                <th className="py-3 px-4 whitespace-nowrap">Place of Work</th>
                                 <th className="py-3 px-4 whitespace-nowrap">License No.</th>
                                 <th className="py-3 px-4 whitespace-nowrap">Location</th>
                                 <th className="py-3 px-4 whitespace-nowrap">Technical Group</th>
@@ -67,7 +67,14 @@ export default function SearchBar({ pharmacists }: { pharmacists: any[] }) {
                                         className="border-b hover:bg-green-50 transition"
                                     >
                                         <td className="py-3 px-4 font-medium text-gray-800 whitespace-nowrap">
-                                            {pharmacist.full_name}
+                                            <button
+                                                onClick={() =>
+                                                    router.push(`/pharmacists/${pharmacist.pcn_license_number}`)
+                                                }
+                                                className="text-blue-700 hover:underline hover:text-blue-900 transition"
+                                            >
+                                                {pharmacist.full_name}
+                                            </button>
                                         </td>
                                         <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {pharmacist.place_of_work}

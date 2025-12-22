@@ -1,7 +1,5 @@
 import AdminPharmacistsClient from "./AdminPharmacistsClient"
-
-import { endpoints } from "@/app/config/api";
-
+import { endpoints } from "@/lib/serverApi";
 
 async function getPharmacists() {
     const res = await fetch(endpoints.pharmacists, {

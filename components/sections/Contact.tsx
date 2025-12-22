@@ -4,8 +4,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
-import { endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
 
 export default function Contact() {
     const [loading, setLoading] = useState(false);
@@ -46,7 +48,7 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="py-24 bg-gray-50">
+        <section id="contact" className="py-24 bg-gray-100">
             <div className="max-w-6xl mx-auto px-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-900 mb-12">
                     Get in Touch
@@ -67,6 +69,17 @@ export default function Contact() {
                         </div>
                         <div className="flex items-center gap-3 text-gray-700">
                             <MapPin className="text-blue-600" /> 123 Pharma Street, Uyo
+                        </div>
+                        <br />
+                        <div className="inline-flex flex-col gap-1 p-1">
+                            <div className="text-left">
+                                Follow us on social media
+                            </div>
+                            <div className="flex justify-center gap-4">
+                                <FaFacebook size={25} className="text-blue-600" />
+                                <FaXTwitter size={25} className="text-black" />
+                                <FaInstagram size={25} className="text-red-600" />
+                            </div>
                         </div>
                     </div>
 
@@ -121,8 +134,8 @@ export default function Contact() {
                             type="submit"
                             disabled={loading}
                             className={`w-full text-white transition ${loading
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-green-600 hover:bg-green-700"
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-green-600 hover:bg-green-700"
                                 }`}
                         >
                             {loading ? "Sending..." : "Send Message"}

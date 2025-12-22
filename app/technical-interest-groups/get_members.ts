@@ -1,5 +1,5 @@
 import { Pharmacist } from "@/types/pharmacist"
-import { endpoints } from "@/app/config/api";
+import { endpoints } from "@/lib/serverApi";
 
 
 async function getPharmacistsByGroup(group: string): Promise<Pharmacist[]> {
