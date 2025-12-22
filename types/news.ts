@@ -1,5 +1,5 @@
 interface NewsArticle {
-  id: string;
+  _id: string;
   slug: string;
   title: string;
   author?: string;
@@ -11,7 +11,16 @@ interface NewsArticle {
   group: string;
 }
 
+interface UpdatedNewsArticle {
+  items: NewsArticle[];
+  limit: number;
+  page: number;
+  total: number;
+}
+
 interface NewsResponse {
   article: NewsArticle;
   related: NewsArticle[];
 }
+
+

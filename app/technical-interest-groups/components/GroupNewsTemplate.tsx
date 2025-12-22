@@ -15,6 +15,7 @@ export async function generateGroupNewsMetadata({
     slug: string
     newsItems: NewsArticle[]
 }): Promise<Metadata> {
+    
     const article = newsItems.find((n) => n.slug === slug)
     if (!article) return { title: "Article not found" }
 
@@ -39,6 +40,7 @@ export function GroupNewsList({
     basePath: string
 }) {
     const groupUrl = `/technical-interest-groups/${group.toLowerCase()}`
+    
     return (
 
 

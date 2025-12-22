@@ -28,7 +28,6 @@ export default function AdminTopicQuestionsPage() {
 
         async function fetchTopicAndQuestions() {
             try {
-                console.log(slug);
                 
                 const topicRes = await fetch(`${endpoints.quiz}/topics/slug/${slug}`);
                 const topicData = await topicRes.json();
@@ -96,7 +95,6 @@ export default function AdminTopicQuestionsPage() {
                         topic_slug: slug,
                         ...(editingQuestion ? {} : { topic_id: topic._id })
                     }
-                    console.log(body);
                     
                     const res = await fetch(url, {
                         method,
