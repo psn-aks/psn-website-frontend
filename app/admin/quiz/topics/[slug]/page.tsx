@@ -69,7 +69,7 @@ export default function AdminTopicQuestionsPage() {
             <Button
                 variant="outline"
                 className="mb-6"
-                onClick={() => router.push("/admin")}
+                onClick={() => router.push("/admin/quiz")}
             >
                 ← Back to Topics
             </Button>

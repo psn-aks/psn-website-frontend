@@ -23,11 +23,24 @@ export default function QuizPage() {
     const [selected, setSelected] = useState<number | null>(null);
     const [loading, setLoading] = useState(true);
 
+    function shuffleArray<T>(array: T[]): T[] {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+
     useEffect(() => {
         async function fetchQuestions() {
             const res = await fetch(`${endpoints.quiz}/topics/slug/${slug}/questions`);
-            const data = await res.json();
-            setQuestions(data);
+            
+            const data: Question[] = await res.json();
+            
+            const shuffled = shuffleArray(data);
+            setQuestions(shuffled.slice(0, 5));
             setLoading(false);
         }
         fetchQuestions();

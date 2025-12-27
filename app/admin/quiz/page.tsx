@@ -45,7 +45,7 @@ export default function AdminTopicsPage() {
     return (
         <main className="max-w-4xl mx-auto p-10">
             <div className="flex justify-between items-center mb-6 ">
-                <h1 className="text-3xl font-bold text-blue-900">Quiz Topics</h1>
+                <h1 className="text-3xl font-bold text-blue-900">Pick your Weapon 🥷</h1>
                 <Button className="bg-green-500" size="sm" onClick={() => { setEditingTopic(null); setTopicModalOpen(true); }}>+ Add Topic</Button>
             </div>
 
@@ -66,6 +66,8 @@ export default function AdminTopicsPage() {
                     const url = editingTopic
                         ? `${endpoints.quiz}/topics/${editingTopic._id}`
                         : `${endpoints.quiz}/topics`;
+                    console.log(data);
+                    
                     const res = await fetch(url, {
                         method,
                         headers: { "Content-Type": "application/json" },
