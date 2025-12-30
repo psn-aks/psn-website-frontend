@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Search } from "lucide-react"
 import { useRouter } from "next/navigation"
 
-export default function SearchBar({ pharmacists }: { pharmacists: any[] }) {
+export default function PharmacistsClient({ pharmacists }: { pharmacists: any[] }) {
     const router = useRouter()
     const [query, setQuery] = useState("")
 

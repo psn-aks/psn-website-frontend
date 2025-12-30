@@ -14,4 +14,5 @@ export interface Pharmacist {
   interest_groups: string[];
   created_at: string;
   phone_number: string;
+  profile_picture?: string | null;
 }

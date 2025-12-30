@@ -69,12 +69,13 @@ export default function AdminPharmacistsClient({
     return (
         <>
             {/* Search */}
-            <div className="relative mb-6 max-w-md mx-auto">
+            <div className="relative mb-10 max-w-md mx-auto">
                 <input
+                    type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search pharmacists..."
-                    className="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
                 />
                 <Search
                     className="absolute left-4 top-3.5 text-gray-400"
@@ -108,14 +109,14 @@ export default function AdminPharmacistsClient({
                     <table className="min-w-full text-left">
                         <thead className="bg-green-600 text-white">
                             <tr>
-                                <th className="py-3 px-4">Name</th>
-                                <th className="py-3 px-4">Premise</th>
-                                <th className="py-3 px-4">License</th>
-                                <th className="py-3 px-4">Location</th>
-                                <th className="py-3 px-4">Technical Group</th>
-                                <th className="py-3 px-4">Interest Groups</th>
-                                <th className="py-3 px-4">Fellow</th>
-                                <th className="py-3 px-4 text-center">Actions</th>
+                                <th className="py-3 px-4 whitespace-nowrap">Name</th>
+                                <th className="py-3 px-4 whitespace-nowrap">Place of Work</th>
+                                <th className="py-3 px-4 whitespace-nowrap">License No.</th>
+                                <th className="py-3 px-4 whitespace-nowrap">Location</th>
+                                <th className="py-3 px-4 whitespace-nowrap">Technical Group</th>
+                                <th className="py-3 px-4 whitespace-nowrap">Interest Groups</th>
+                                <th className="py-3 px-4 whitespace-nowrap">Fellow</th>
+                                <th className="py-3 px-4 whitespace-nowrap text-center">Actions</th>
                             </tr>
                         </thead>
 
@@ -127,33 +128,40 @@ export default function AdminPharmacistsClient({
                                         initial={{ opacity: 0, y: 8 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: i * 0.04 }}
-                                        className="border-b hover:bg-green-50"
+                                        className="border-b hover:bg-green-50 transition"
                                     >
-                                        <td className="py-3 px-4 font-medium">
-                                            {p.full_name}
+                                        <td className="py-3 px-4 font-medium text-gray-800 whitespace-nowrap">
+                                            <button
+                                                onClick={() =>
+                                                    router.push(`/admin/pharmacists/${p.pcn_license_number}`)
+                                                }
+                                                className="text-blue-700 hover:underline hover:text-blue-900 transition"
+                                            >
+                                                {p.full_name}
+                                            </button>
                                         </td>
-                                        <td className="py-3 px-4">
+                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.place_of_work}
                                         </td>
-                                        <td className="py-3 px-4">
+                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.pcn_license_number}
                                         </td>
-                                        <td className="py-3 px-4">
+                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.residential_address}
                                         </td>
-                                        <td className="py-3 px-4">
+                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.technical_group}
                                         </td>
-                                        <td className="py-3 px-4">
+                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {Array.isArray(p.interest_groups)
                                                 ? p.interest_groups.join(", ")
                                                 : "-"}
                                         </td>
-                                        <td className="py-3 px-4">
+                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.fellow}
                                         </td>
 
-                                        <td className="py-3 px-4 text-center">
+                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap text-center">
                                             <div className="flex justify-center gap-3">
                                                 <Button
                                                     size="sm"
@@ -187,7 +195,7 @@ export default function AdminPharmacistsClient({
                             ) : (
                                 <tr>
                                     <td
-                                        colSpan={8}
+                                        colSpan={7}
                                         className="text-center py-6 text-gray-500 italic"
                                     >
                                         No pharmacists found

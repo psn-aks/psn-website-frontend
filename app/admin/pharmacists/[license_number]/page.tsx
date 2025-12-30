@@ -3,6 +3,7 @@ import Link from "next/link";
 import { endpoints } from "@/lib/serverApi";
 import { Pharmacist } from "@/types/pharmacist";
 import ProfileImage from "@/components/profile_image/ProfileImage";
+import EditProfileImageButton from "@/components/profile_image/EditProfileImageButton";
 
 
 async function getPharmacist(licenseNumber: string) {
@@ -21,7 +22,7 @@ async function getPharmacist(licenseNumber: string) {
     return res.json()
 }
 
-export default async function PharmacistDetailPage({ params }: {params: Promise<{ license_number: string }>}) {
+export default async function AdminPharmacistDetailPage({ params }: {params: Promise<{ license_number: string }>}) {
     const { license_number } = await params;
     const pharmacist: Pharmacist = await getPharmacist(license_number)
 
@@ -33,7 +34,7 @@ export default async function PharmacistDetailPage({ params }: {params: Promise<
                     <ol className="flex items-center space-x-2">
                         <li>
                             <Link
-                                href="/"
+                                href="/admin"
                                 className="hover:text-blue-700 transition"
                             >
                                 Home
@@ -42,7 +43,7 @@ export default async function PharmacistDetailPage({ params }: {params: Promise<
                         <li>/</li>
                         <li>
                             <Link
-                                href="/pharmacists"
+                                href="/admin/pharmacists"
                                 className="hover:text-blue-700 transition"
                             >
                                 Pharmacists
@@ -61,6 +62,10 @@ export default async function PharmacistDetailPage({ params }: {params: Promise<
                         src={pharmacist.profile_picture}
                         alt={`${pharmacist.full_name} profile picture`}
                     />
+                    <EditProfileImageButton
+                        licenseNumber={pharmacist.pcn_license_number}
+                    />
+
 
                     <h1 className="mt-4 text-3xl font-bold text-blue-900 text-center">
                         {pharmacist.full_name}

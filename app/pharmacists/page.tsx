@@ -1,4 +1,4 @@
-import SearchBar from "./components/SearchBar"
+import PharmacistsClient from "./components/PharmacistsClient"
 import { endpoints } from "@/lib/serverApi";
 
 
@@ -22,7 +22,7 @@ export default async function PharmacistsPage() {
                     Pharmacists Directory
                 </h1>
                 
-                <SearchBar pharmacists={pharmacists} />
+                <PharmacistsClient pharmacists={pharmacists} />
             </div>
         </main>
     )
