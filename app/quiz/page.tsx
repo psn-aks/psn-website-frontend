@@ -32,7 +32,7 @@ export default function QuizTopicsPage() {
             <div className="max-w-6xl mx-auto">
 
                 <h1 className="text-3xl font-bold text-center mb-10 text-blue-900">
-                    Choose a Quiz Topic
+                    Pick your Weapon 🥷
                 </h1>
 
                 <div className="grid md:grid-cols-2 gap-6">

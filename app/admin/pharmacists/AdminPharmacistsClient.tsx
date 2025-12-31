@@ -104,7 +104,7 @@ export default function AdminPharmacistsClient({
             </div>
 
             {/* Table */}
-            <div className="bg-white shadow-md rounded-2xl overflow-hidden">
+            <div className="max-w-lg  bg-white overflow-hidden shadow-md rounded-2xl">
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-left">
                         <thead className="bg-green-600 text-white">
