@@ -95,7 +95,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         })}
                     </nav>
 
-                    
+
                 </motion.aside>
             </AnimatePresence>
 
@@ -123,7 +123,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </div>
 
             {/* Main content area (pushes right automatically because sidebar is fixed) */}
-            <main className="flex-1 p-8 lg:pl-8">
+            <main className="flex-1  pl-2 lg:pl-4">
                 {/* Top bar */}
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-3xl font-bold text-gray-800">
