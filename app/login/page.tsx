@@ -3,19 +3,22 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react"
 import { useAuth } from "@/context/AuthContext";
 import { api } from "@/lib/clientApi";
-
 
 export default function LoginPage() {
     const router = useRouter();
     const { user, login } = useAuth();
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const isPasswordTooShort = password.length > 0 && password.length < 6;
 
     useEffect(() => {
         if (user) {
@@ -26,6 +29,12 @@ export default function LoginPage() {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
+
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters");
+            return;
+        }
+
         setLoading(true);
 
         try {
@@ -34,9 +43,7 @@ export default function LoginPage() {
                 password,
             });
 
-            // Save only user info in context
             login(data.user);
-
             router.replace("/");
         } catch (err: any) {
             const message =
@@ -60,6 +67,7 @@ export default function LoginPage() {
                 <form onSubmit={handleLogin} className="space-y-4">
                     {error && <p className="text-red-500 text-sm">{error}</p>}
 
+                    {/* Email */}
                     <label className="block text-sm text-gray-600 mb-1">Email</label>
                     <input
                         type="email"
@@ -70,23 +78,50 @@ export default function LoginPage() {
                         disabled={loading}
                     />
 
+                    {/* Password */}
                     <label className="block text-sm text-gray-600 mb-1">Password</label>
-                    <input
-                        type="password"
-                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        disabled={loading}
-                    />
+                    <div className="relative">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            className="w-full border border-gray-300 rounded-xl px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            disabled={loading}
+                        />
+
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword((v) => !v)}
+                            className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                            aria-label="Toggle password visibility"
+                        >
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                    </div>
+
+                    {isPasswordTooShort && (
+                        <p className="text-xs text-red-500">
+                            Password must be at least 6 characters
+                        </p>
+                    )}
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition disabled:opacity-70"
-                        disabled={loading}
+                        className="w-full bg-green-600 text-white py-3 rounded-xl font-medium hover:bg-green-700 transition disabled:opacity-70"
+                        disabled={loading || password.length < 6}
                     >
                         {loading ? "Logging in..." : "Login"}
                     </button>
+
+                    <p className="text-sm text-right">
+                        <Link
+                            href="/forgot-password"
+                            className="text-blue-600 hover:underline"
+                        >
+                            Forgot password?
+                        </Link>
+                    </p>
                 </form>
 
                 <p className="text-sm text-center text-gray-600 mt-6">
@@ -97,32 +132,5 @@ export default function LoginPage() {
                 </p>
             </div>
         </main>
-    )
-}
-
-function Input({
-    label,
-    type,
-    value,
-    onChange,
-}: {
-    label: string
-    type: string
-    value: string
-    onChange: (v: string) => void
-}) {
-    return (
-        <div>
-            <label className="block text-sm text-gray-600 mb-1">
-                {label}
-            </label>
-            <input
-                type={type}
-                value={value}
-                onChange={(e) => onChange(e.target.value)}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-            />
-        </div>
-    )
+    );
 }
