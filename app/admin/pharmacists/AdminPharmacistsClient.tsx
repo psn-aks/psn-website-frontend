@@ -104,18 +104,27 @@ export default function AdminPharmacistsClient({
             </div>
 
             {/* Table */}
-            <div className="max-w-md  bg-white overflow-hidden shadow-md rounded-2xl">
-                <div className="overflow-x-auto">
+            <div className="bg-white shadow-md rounded-2xl overflow-hidden">
+                <div className="overflow-x-auto ">
                     <table className="min-w-full text-left">
                         <thead className="bg-green-600 text-white">
                             <tr>
+                                {/* Always visible */}
                                 <th className="py-3 px-4 whitespace-nowrap">Name</th>
-                                <th className="py-3 px-4 whitespace-nowrap">Place of Work</th>
-                                <th className="py-3 px-4 whitespace-nowrap">License No.</th>
-                                <th className="py-3 px-4 whitespace-nowrap">Location</th>
-                                <th className="py-3 px-4 whitespace-nowrap">Technical Group</th>
-                                <th className="py-3 px-4 whitespace-nowrap">Interest Groups</th>
-                                <th className="py-3 px-4 whitespace-nowrap">Fellow</th>
+
+                                {/* Hidden on mobile, visible on sm and up */}
+                                <th className="hidden sm:table-cell py-3 px-4 whitespace-nowrap">Place of Work</th>
+                                <th className="py-3 px-4 whitespace-nowrap">License</th>
+
+                                {/* Hidden until md */}
+                                <th className="hidden md:table-cell py-3 px-4 whitespace-nowrap">Location</th>
+                                <th className="hidden md:table-cell py-3 px-4 whitespace-nowrap">Technical Group</th>
+
+                                {/* Hidden until lg */}
+                                <th className="hidden lg:table-cell py-3 px-4 whitespace-nowrap">Interest Groups</th>
+                                <th className="hidden lg:table-cell py-3 px-4 whitespace-nowrap">Fellow</th>
+
+                                {/* Always visible */}
                                 <th className="py-3 px-4 whitespace-nowrap text-center">Actions</th>
                             </tr>
                         </thead>
@@ -140,24 +149,27 @@ export default function AdminPharmacistsClient({
                                                 {p.full_name}
                                             </button>
                                         </td>
-                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+
+                                        <td className="hidden sm:table-cell py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.place_of_work}
                                         </td>
                                         <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.pcn_license_number}
                                         </td>
-                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+
+                                        <td className="hidden md:table-cell py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.residential_address}
                                         </td>
-                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+                                        <td className="hidden md:table-cell py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.technical_group}
                                         </td>
-                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+
+                                        <td className="hidden lg:table-cell py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {Array.isArray(p.interest_groups)
                                                 ? p.interest_groups.join(", ")
                                                 : "-"}
                                         </td>
-                                        <td className="py-3 px-4 text-gray-700 whitespace-nowrap">
+                                        <td className="hidden lg:table-cell py-3 px-4 text-gray-700 whitespace-nowrap">
                                             {p.fellow}
                                         </td>
 
@@ -181,9 +193,7 @@ export default function AdminPharmacistsClient({
                                                     variant="outline"
                                                     className="text-red-600"
                                                     onClick={() =>
-                                                        handleDelete(
-                                                            p.pcn_license_number
-                                                        )
+                                                        handleDelete(p.pcn_license_number)
                                                     }
                                                 >
                                                     <Trash2 size={16} />
@@ -195,7 +205,7 @@ export default function AdminPharmacistsClient({
                             ) : (
                                 <tr>
                                     <td
-                                        colSpan={7}
+                                        colSpan={8}
                                         className="text-center py-6 text-gray-500 italic"
                                     >
                                         No pharmacists found
